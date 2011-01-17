@@ -1,0 +1,110 @@
+<?php
+/**
+ * Import URL Rewrites
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that can
+ * be found on the web at the following URL:
+ * http://store.prattski.com/LICENSE.txt
+ *
+ * @category   Prattski
+ * @package    Prattski_ImportRewrites
+ * @copyright  Copyright (c) 2010-2011 Prattski (http://prattski.com/)
+ * @license    http://store.prattski.com/LICENSE.txt
+ */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3 class="icon-head"><?php echo $this->__('Import/Export URL Rewrites') ?></h3></td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <?php if (!$this->getIsReadonly()): ?>
+    <div class="box-left">
+        <form id="import_form" action="<?php echo $this->getUrl('*/*/importRewrites') ?>" method="post" enctype="multipart/form-data">
+            <?php echo $this->getBlockHtml('formkey')?>
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Import URL Rewrites') ?></h4>
+            </div>
+            <fieldset>
+                <legend><?php echo $this->__('Import URL Rewrites') ?></legend>
+                <input type="file" name="import_rewrites_file" class="input-file required-entry"/>
+                <?php echo $this->getButtonHtml('Import URL Rewrites', "this.form.submit()") ?>
+            </fieldset>
+        </form>
+        <script type="text/javascript">
+            var importForm = new varienForm('import_form');
+        </script>
+    </div>
+    <?php endif; ?>
+    <div class="<?php if ($this->getIsReadonly()): ?>box-left<?php else: ?>box-right<?php endif; ?>">
+        <form id="export_form" action="<?php echo $this->getUrl('*/*/exportCsv') ?>" method="post" enctype="multipart/form-data">
+            <?php echo $this->getBlockHtml('formkey')?>
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Export URL Rewrites') ?></h4>
+            </div>
+            <fieldset>
+                <legend><?php echo $this->__('Export URL Rewrites') ?></legend>
+                <?php echo $this->getButtonHtml('Export URL Rewrites', "this.form.submit()") ?>
+            </fieldset>
+        </form>
+    </div>
+    <div class="clear"></div>
+    <div class="entry-edit">
+        <div class="box-left">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Instructions') ?></h4>
+            </div>
+            <fieldset>
+                <legend><?php echo $this->__('Instructions') ?></legend>
+                <h3>Importing:</h3>
+                <p>This tool allows you to import/export 'Custom' URL rewrites.  The other type of rewrites are 'System'
+                    rewrites, which Magento creates automatically when creating products, categories, and cms pages. If
+                    need to edit/add these, you can do that through the URL Rewrite Management menu option.  Due to the
+                    increased risk of importing System rewrites, I have left that ability out of this import/export tool.</p>
+                <p>After an import, you'll see a log of the results on the right, letting you know how many successful rows
+                    were imported, and if there were any errors it will tell you what the error was, and on which line(s).</p>
+                <hr style="margin: 15px 0" />
+                <h3>Column Definitions:</h3>
+                <p>Your headers should be as follows, in the order provided:</p>
+                <p><strong>'Store View': </strong>If you only have 1 store view, this value is typically always just
+                    '1'. If you have multiple store views, you will need to have a rewrite created for each one you
+                    want the rewrite to apply to. (Required)</p>
+                <p><strong>'ID Path': </strong>Unique identifier for your rewrite. Can be anything you'd like. A
+                    suggestion is to have this value the same as your 'Request Path' value. (Required)</p>
+                <p><strong>'Request Path': </strong>The relative path of the incoming URL that you want to have
+                    redirected. Example: 'discgolf/is/lame'.  Must be unique. (Required)</p>
+                <p><strong>'Target Path': </strong>The relative path of the page the request path will be redirected to.
+                    Example: 'discgolf/is/awesome'. If the page you are redirecting to does not exist, you will get
+                    a 404 page. (Required)</p>
+                <p><strong>'Redirect': </strong>The type of redirect you'd like to use. Use 'RP' for 301 Permanent,
+                    or 'R' for 302 Temporary. If left blank, the redirect will essentially be disabled. Not sure why exactly,
+                    but in the URL Redirect Management grid, this column is named 'Options'. (Required)</p>
+                <p><strong>'Description:' </strong>An optional field if you'd like to have a description for the
+                    redirect. (Optional)</p>
+            </fieldset>
+        </div>
+        <div class="box-right">
+            <?php if ($this->getResults('rewriteErrors') || $this->getResults('rewriteSuccess')) : ?>
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Import Results') ?></h4>
+                </div>
+                <fieldset>
+                    <legend><?php echo $this->__('Import Results') ?></legend>
+                    <?php if ($this->getResults('rewriteSuccess')) : ?>
+                        <h3 style="color: green">Successful Rows: <?php echo $this->getResults('rewriteSuccess') ?></h3>
+                        <?php $this->clearResults('rewriteSuccess') ?>
+                    <?php endif; ?>
+                    <?php if ($this->getResults('rewriteErrors')) : ?>
+                        <h3 style="color: red">Errors:</h3>
+                        <p><?php echo $this->getResults('rewriteErrors') ?></p>
+                        <?php $this->clearResults('rewriteErrors') ?>
+                    <?php endif; ?>
+                </fieldset>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

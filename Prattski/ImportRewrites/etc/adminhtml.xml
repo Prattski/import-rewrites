@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Import URL Rewrites
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that can
+ * be found on the web at the following URL:
+ * http://store.prattski.com/LICENSE.txt
+ *
+ * @category   Prattski
+ * @package    Prattski_ImportRewrites
+ * @copyright  Copyright (c) 2010-2011 Prattski (http://prattski.com/)
+ * @license    http://store.prattski.com/LICENSE.txt
+ */
+ -->
+<config>
+    <menu>
+        <catalog translate="title" module="prattski_importrewrites">
+            <children>
+                <prattski_importrewrites translate="title" module="prattski_importrewrites">
+                    <title>URL Rewrite Import/Export</title>
+                    <sort_order>31</sort_order>
+                    <action>prattski_importrewrites/importexport</action>
+                </prattski_importrewrites>
+            </children>
+        </catalog>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <prattski_importrewrites translate="title" module="prattski_importrewrites">
+                        <title>URL Rewrite Import/Export</title>
+                        <sort_order>31</sort_order>
+                   </prattski_importrewrites>
+               </children>
+           </admin>
+       </resources>
+    </acl>
+</config>
