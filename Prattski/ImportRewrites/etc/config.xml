@@ -34,6 +34,11 @@
                 <class>Prattski_ImportRewrites_Helper</class>
             </prattski_importrewrites>
         </helpers>
+        <models>
+            <prattski_importrewrites>
+                <class>Prattski_ImportRewrites_Model</class>
+            </prattski_importrewrites>
+        </models>
     </global>
 
     <admin>
