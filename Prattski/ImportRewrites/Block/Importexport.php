@@ -20,20 +20,21 @@
  * @category    Prattski
  * @package     Prattski_ImportRewrites
  */
-class Prattski_ImportRewrites_Block_Importexport extends Mage_Adminhtml_Block_Widget
+class Prattski_ImportRewrites_Block_Importexport
+    extends Mage_Adminhtml_Block_Widget
 {
-	/**
+    /**
 	 * Class Constructor
 	 *
 	 * @return void
 	 */
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
         // Specify which adminhtml template file to use
-		$this->setTemplate('importrewrites/index.phtml');
-	}
+        $this->setTemplate('importrewrites/index.phtml');
+    }
 
     /**
      * Getter for import results stored in the adminhtml session by type

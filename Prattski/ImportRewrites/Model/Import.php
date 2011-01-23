@@ -62,7 +62,8 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
 
                 // Quit if CSV doesn't have the correct number of columns
                 if (count($csvFields) != count($v)) {
-                    Mage::getSingleton('adminhtml/session')->addError($this->__('Invalid file upload attempt'));
+                    Mage::getSingleton('adminhtml/session')
+                        ->addError($this->__('Invalid file upload attempt'));
                 }
 
                 // Instantiate Url Rewrite model
@@ -80,7 +81,8 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
                 // Try to save the rewrite
                 try {
                     // Check if the request path is valid
-                    Mage::helper('core/url_rewrite')->validateRequestPath($v[2]);
+                    Mage::helper('core/url_rewrite')
+                        ->validateRequestPath($v[2]);
 
                     // Attempt to save rewrite
                     $rewriteModel->save();
@@ -101,7 +103,9 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
             $this->_setRewriteSuccess($success);
 
         } else {
-            Mage::throwException($this->__('Invalid file format upload attempt'));
+            Mage::throwException(
+                $this->__('Invalid file format upload attempt')
+            );
         }
     }
 
@@ -113,7 +117,8 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
      */
     protected function _setRewriteErrors($errors)
     {
-        Mage::getSingleton('adminhtml/session')->setData('rewriteErrors', implode("<br />", $errors));
+        Mage::getSingleton('adminhtml/session')
+            ->setData('rewriteErrors', implode("<br />", $errors));
     }
 
     /**
@@ -124,6 +129,7 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
      */
     protected function _setRewriteSuccess($success)
     {
-        Mage::getSingleton('adminhtml/session')->setData('rewriteSuccess', $success);
+        Mage::getSingleton('adminhtml/session')
+            ->setData('rewriteSuccess', $success);
     }
 }

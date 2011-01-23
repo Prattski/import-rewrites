@@ -21,7 +21,8 @@
  * @category    Prattski
  * @package     Prattski_ImportRewrites
  */
-class Prattski_ImportRewrites_Block_Adminhtml_Urlrewrite_Grid extends Mage_Adminhtml_Block_Urlrewrite_Grid
+class Prattski_ImportRewrites_Block_Adminhtml_Urlrewrite_Grid
+    extends Mage_Adminhtml_Block_Urlrewrite_Grid
 {
 
     /**
@@ -47,12 +48,14 @@ class Prattski_ImportRewrites_Block_Adminhtml_Urlrewrite_Grid extends Mage_Admin
     protected function _prepareColumns()
     {
         // Store ID
-        $this->addColumn('store_id', array(
-            'header' => $this->__('Store View'),
-            'width' => '200px',
-            'index' => 'store_id',
-            'store_view' => true,
-        ));
+        $this->addColumn(
+            'store_id', array(
+                'header' => $this->__('Store View'),
+                'width' => '200px',
+                'index' => 'store_id',
+                'store_view' => true,
+            )
+        );
 
         // This column only needed if I decide to allow the import/export
         // of 'System' rewrites as well.
@@ -68,39 +71,49 @@ class Prattski_ImportRewrites_Block_Adminhtml_Urlrewrite_Grid extends Mage_Admin
 //        ));
 
         // ID Path
-        $this->addColumn('id_path', array(
-            'header' => $this->__('ID Path'),
-            'width' => '50px',
-            'index' => 'id_path'
-        ));
+        $this->addColumn(
+            'id_path', array(
+                'header' => $this->__('ID Path'),
+                'width' => '50px',
+                'index' => 'id_path'
+            )
+        );
 
         // Request Path
-        $this->addColumn('request_path', array(
-            'header' => $this->__('Request Path'),
-            'width' => '50px',
-            'index' => 'request_path'
-        ));
+        $this->addColumn(
+            'request_path', array(
+                'header' => $this->__('Request Path'),
+                'width' => '50px',
+                'index' => 'request_path'
+            )
+        );
 
         // Target Path
-        $this->addColumn('target_path', array(
-            'header' => $this->__('Target Path'),
-            'width' => '50px',
-            'index' => 'target_path'
-        ));
+        $this->addColumn(
+            'target_path', array(
+                'header' => $this->__('Target Path'),
+                'width' => '50px',
+                'index' => 'target_path'
+            )
+        );
 
         // Redirect (Options)
-        $this->addColumn('options', array(
-            'header' => $this->__('Redirect'),
-            'width' => '50px',
-            'index' => 'options'
-        ));
+        $this->addColumn(
+            'options', array(
+                'header' => $this->__('Redirect'),
+                'width' => '50px',
+                'index' => 'options'
+            )
+        );
 
         // Description
-        $this->addColumn('description', array(
-            'header' => $this->__('Description'),
-            'width' => '50px',
-            'index' => 'description'
-        ));
+        $this->addColumn(
+            'description', array(
+                'header' => $this->__('Description'),
+                'width' => '50px',
+                'index' => 'description'
+            )
+        );
 
         // Add CSV export type
         $this->addExportType('*/*/exportCsv', $this->__('CSV'));

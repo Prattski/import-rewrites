@@ -20,18 +20,20 @@
  * @category    Prattski
  * @package     Prattski_ImportRewrites
  */
-class Prattski_ImportRewrites_ImportexportController extends Mage_Adminhtml_Controller_Action
+class Prattski_ImportRewrites_ImportexportController
+    extends Mage_Adminhtml_Controller_Action
 {
-	/**
+    /**
 	 * Index Action (Loads layout for view)
      *
      * @return void
 	 */
-	public function indexAction()
+    public function indexAction()
     {
-    	$this->loadLayout();
+        $this->loadLayout();
         $this->_addContent(
-            $this->getLayout()->createBlock('prattski_importrewrites/importexport')
+            $this->getLayout()
+            ->createBlock('prattski_importrewrites/importexport')
         );
         $this->_setActiveMenu('catalog');
         $this->renderLayout();
@@ -45,7 +47,8 @@ class Prattski_ImportRewrites_ImportexportController extends Mage_Adminhtml_Cont
     public function exportCsvAction()
     {
         $fileName   = 'url-rewrites.csv';
-        $content    = $this->getLayout()->createBlock('prattski_importrewrites/adminhtml_urlrewrite_grid')
+        $content    = $this->getLayout()
+            ->createBlock('prattski_importrewrites/adminhtml_urlrewrite_grid')
             ->getCsvFile();
 
         $this->_prepareDownloadResponse($fileName, $content);
@@ -58,22 +61,29 @@ class Prattski_ImportRewrites_ImportexportController extends Mage_Adminhtml_Cont
      */
     public function importRewritesAction()
     {
-        if ($this->getRequest()->isPost() && !empty($_FILES['import_rewrites_file']['tmp_name'])) {
+        $fileName = $_FILES['import_rewrites_file']['tmp_name'];
+        if ($this->getRequest()->isPost() && !empty($fileName)) {
             try {
                 $fileName = $_FILES['import_rewrites_file']['tmp_name'];
                 Mage::log(print_r($fileName, true));
-                Mage::getModel('prattski_importrewrites/import')->importRewrites($fileName);
-                Mage::getSingleton('adminhtml/session')->addSuccess($this->__('The URL Rewrites have been imported.'));
+                Mage::getModel('prattski_importrewrites/import')
+                    ->importRewrites($fileName);
+                Mage::getSingleton('adminhtml/session')
+                    ->addSuccess(
+                        $this->__('The URL Rewrites have been imported.')
+                    );
             }
             catch (Mage_Core_Exception $e) {
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                Mage::getSingleton('adminhtml/session')
+                    ->addError($e->getMessage());
             }
             catch (Exception $e) {
-                Mage::getSingleton('adminhtml/session')->addError($this->__('Invalid file upload attempt'));
+                Mage::getSingleton('adminhtml/session')
+                    ->addError($this->__('Invalid file upload attempt'));
             }
-        }
-        else {
-            Mage::getSingleton('adminhtml/session')->addError($this->__('Invalid file upload attempt'));
+        } else {
+            Mage::getSingleton('adminhtml/session')
+                ->addError($this->__('Invalid file upload attempt'));
         }
         $this->_redirect('*/*/index');
     }
