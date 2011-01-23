@@ -66,6 +66,24 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
                         ->addError($this->__('Invalid file upload attempt'));
                 }
 
+                // Check to see if there are any missing required columns
+                // Required: Store View, ID Path, Request Path, Target Path
+                $blank = array();
+                for ($i = 0; $i <= 3; $i++) {
+                    if ($v[$i] == '') {
+                        $blank[] = $csvFields[$i];
+                    }
+                }
+
+                // If any missing required columns are found, create error
+                // and skip the current row
+                if (!empty($blank)) {
+                    $line = $k + 1;
+                    $errors[] = "CSV Line ".$line.":  " .
+                        "Missing required fields: " . implode(', ', $blank);
+                    continue;
+                }
+
                 // Check to see if a redirect already exists by the 'id path'
                 // If it exists, load model to edit.  If not, load fresh model
                 $rewriteModel = Mage::getModel('core/url_rewrite')
