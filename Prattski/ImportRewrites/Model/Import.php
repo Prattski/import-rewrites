@@ -38,7 +38,7 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
             1   => Mage::helper('prattski_importrewrites')->__('ID Path'),
             2   => Mage::helper('prattski_importrewrites')->__('Request Path'),
             3   => Mage::helper('prattski_importrewrites')->__('Target Path'),
-            4   => Mage::helper('prattski_importrewrites')->__('Options'),
+            4   => Mage::helper('prattski_importrewrites')->__('Redirect'),
             5   => Mage::helper('prattski_importrewrites')->__('Description')
         );
 
@@ -73,7 +73,7 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
                     ->setIdPath($v[1])
                     ->setRequestPath($v[2])
                     ->setTargetPath($v[3])
-                    ->setOptions($v[4])
+                    ->setOptions($v[4]) // The 'Redirect' column
                     ->setDescription($v[5])
                     ->setIsSystem(0);
 
