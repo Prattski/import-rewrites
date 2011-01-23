@@ -65,7 +65,6 @@ class Prattski_ImportRewrites_ImportexportController
         if ($this->getRequest()->isPost() && !empty($fileName)) {
             try {
                 $fileName = $_FILES['import_rewrites_file']['tmp_name'];
-                Mage::log(print_r($fileName, true));
                 Mage::getModel('prattski_importrewrites/import')
                     ->importRewrites($fileName);
                 Mage::getSingleton('adminhtml/session')

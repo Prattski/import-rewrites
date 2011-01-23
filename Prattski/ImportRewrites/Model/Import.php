@@ -66,8 +66,13 @@ class Prattski_ImportRewrites_Model_Import extends Mage_Core_Model_Abstract
                         ->addError($this->__('Invalid file upload attempt'));
                 }
 
-                // Instantiate Url Rewrite model
-                $rewriteModel = Mage::getModel('core/url_rewrite');
+                // Check to see if a redirect already exists by the 'id path'
+                // If it exists, load model to edit.  If not, load fresh model
+                $rewriteModel = Mage::getModel('core/url_rewrite')
+                    ->loadByIdPath($v[1]);
+                if (!$rewriteModel || $rewriteModel->getStoreId() != $v[0]) {
+                    $rewriteModel = Mage::getModel('core/url_rewrite');
+                }
 
                 // Set values for the rewrite
                 $rewriteModel->setStoreId($v[0])
