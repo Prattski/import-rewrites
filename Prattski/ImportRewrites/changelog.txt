@@ -1,0 +1,12 @@
+VERSION 1.1.0
+    # Now allows for updating rewrites if ID Path already exists
+    # Added validation to make sure the required fields had values
+    # Ensured all instances of "Option" were changed to "Redirect".  Magento is
+      confusing in their terminology of this column
+    # Moved business logic for save/edit of rewrites out of the controller to
+      a model
+    # Passes PHP_CodeSniffer 100% successfully
+      (http://pear.php.net/package/PHP_CodeSniffer/)
+
+VERSION 1.0.0
+    # Initial Version
