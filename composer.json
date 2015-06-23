@@ -1,0 +1,14 @@
+{
+    "name": "prattski/import-rewrites",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "This extension gives you an easy interface to import/export Custom URL rewrites.",	
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+        {
+            "name":"Josh Pratt"
+        }
+    ]
+}
